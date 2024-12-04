@@ -16,8 +16,8 @@ public class FamiliasController {
     @Autowired
     FamiliasRepository dbConnection;
 
-    @CrossOrigin
-    @GetMapping("/") //corrige o erro de CORS (com isso a API é pública para todos)
+    @CrossOrigin //corrige o erro de CORS (com isso a API é pública para todos)
+    @GetMapping("/")
     public List<Familias> encontrarTodosOsRegistros() {
         return dbConnection.findAll();
     }
