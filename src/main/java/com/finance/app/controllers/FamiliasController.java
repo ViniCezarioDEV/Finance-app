@@ -3,10 +3,8 @@ package com.finance.app.controllers;
 import com.finance.app.models.Familias;
 import com.finance.app.repository.FamiliasRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -22,4 +20,18 @@ public class FamiliasController {
         return dbConnection.findAll();
     }
 
+    @CrossOrigin
+    @PostMapping(value = "/inserir", produces = "application/json")
+    public Familias create(@RequestBody Familias exemplo){
+        dbConnection.save(exemplo);
+        return exemplo;
+    }
+
+    @CrossOrigin
+    @DeleteMapping(value = "/deletar/{id}", produces = "application/json")
+    public String delete(@PathVariable int id) {
+        Familias indicado = dbConnection.findFamiliasByIdFamilia(id).get();
+        dbConnection.delete(indicado);
+        return "{deleted: " + id + "}";
+    }
 }
