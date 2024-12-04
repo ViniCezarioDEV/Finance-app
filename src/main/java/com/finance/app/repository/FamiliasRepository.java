@@ -9,4 +9,5 @@ import java.util.UUID;
 
 public interface FamiliasRepository extends JpaRepository<Familias, UUID> {
     Optional<Familias> findFamiliasByIdFamilia(int id);
+    Optional<Familias> findFamiliasByidFamilia(int id);
 }
